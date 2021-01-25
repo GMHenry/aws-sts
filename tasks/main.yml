@@ -2,7 +2,7 @@
 - block:
   - name: create sts variable
     set_fact:
-      Sts: "{{ Sts | default({}) | combine((vars['hostvars'][env], recursive=True) }}"
+      Sts: "{{ Sts | default({}) | combine((vars['hostvars'][env]).get('Sts') or {}, recursive=True) }}"
 
   - set_fact:
       sts_region: "{{ Sts.Region
